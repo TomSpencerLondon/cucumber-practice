@@ -6,7 +6,7 @@ import implementation.Checkout;
 import static org.junit.Assert.*;
 
 public class CheckoutSteps {
-  Checkout checkout;
+  Checkout checkout = new Checkout();
   int bananaPrice;
 
   @Given("^the price of a \"(.*?)\" is (\\d+)c$")
@@ -16,10 +16,9 @@ public class CheckoutSteps {
 
   @When("^I checkout (\\d+) \"(.*?)\"$")
   public void i_checkout(int itemCount, String itemName) throws Throwable {
-    checkout = new Checkout();
     checkout.add(itemCount, bananaPrice);
   }
-
+  
   @Then("^the total price should be (\\d+)c$")
   public void the_total_price_should_be_40c(int total) throws Throwable {
       assertEquals(total, checkout.total());
