@@ -1,3 +1,6 @@
 #!/bin/sh
 #!/usr/bin/env fish
-java -cp "jars/*" cucumber.api.cli.Main -p pretty .
+CUCUMBER_PUBLISH_QUIET=true
+javac -cp "jars/*" step_definitions/CheckoutSteps.java implementation/Checkout.java
+java -cp "jars/*:." io.cucumber.core.cli.Main -p progress --snippets camelcase -g step_definitions features
+
